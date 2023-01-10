@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DSAApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="My Simple App" Height="350" Width="605" ResizeMode="NoResize">
     <Grid>
-        
+        <Label x:Name="leftlabel" Content="Test" HorizontalAlignment="Left" Margin="36,261,0,0" VerticalAlignment="Top" Width="224" Height="30" FontSize="16" FontFamily="Perpetua"/>
+        <Label x:Name="rightabel" Content="Test" HorizontalAlignment="Left" Margin="381,261,-8,0" VerticalAlignment="Top" Width="226" Height="30" FontFamily="Perpetua" FontSize="16"/>
+        <Label x:Name="label" Content="Click Arrows Below to Traverse through students" HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Height="38" Width="501" FontSize="14" FontFamily="OCR A Std"/>
+        <Button x:Name="lbutton" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="119" Height="78" IsEnabled="True" Margin="68,95,0,0" Click="lbutton_Click">
+            <Image Source="E:\Coding\C#\DSAApp\DSAApp\left arrow.png" Width="119" RenderTransformOrigin="0.862,0.536" Stretch="Fill" Cursor="Hand"/>
+        </Button>
+        <Button x:Name="rbutton" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="119" Height="78" IsEnabled="True" Margin="350,95,0,0" Click="rbutton_Click">
+            <Image Source="E:\Coding\C#\DSAApp\DSAApp\right arrow.png" Width="109" RenderTransformOrigin="0.862,0.536" Cursor="Hand" Stretch="Fill"/>
+        </Button>
+        <Label x:Name="gradeLabelLeft" Content="Grade: " HorizontalAlignment="Left" Margin="36,279,0,0" VerticalAlignment="Top" Width="52" Height="30" FontSize="16" FontFamily="Perpetua"/>
+        <Label x:Name="gradeLabelRight" Content="Grade: " HorizontalAlignment="Left" Margin="381,279,0,0" VerticalAlignment="Top" Width="72" Height="30" FontSize="16" FontFamily="Perpetua" RenderTransformOrigin="5.023,0.742"/>
+        <Label x:Name="gradeLeft" Content="A" HorizontalAlignment="Left" Margin="88,277,0,0" VerticalAlignment="Top" Width="44" Height="30" FontSize="16" FontFamily="Perpetua Titling MT" FontWeight="Bold"/>
+        <Label x:Name="gradeRight" Content="A" HorizontalAlignment="Left" Margin="429,277,0,0" VerticalAlignment="Top" Width="44" Height="30" FontSize="16" FontFamily="Perpetua Titling MT" FontWeight="Bold"/>
+
     </Grid>
 </Window>

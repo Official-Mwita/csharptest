@@ -20,9 +20,26 @@ namespace DSAApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        Student s, s2;
         public MainWindow()
         {
             InitializeComponent();
+
+            s = new Student("abc", "A");
+            s2 = new Student("svu", "A");
+        }
+
+        private void rbutton_Click(object sender, RoutedEventArgs e)
+        {
+            rightabel.Content = s.Name;
+            gradeRight.Content = s.Grade;
+        }
+
+        private void lbutton_Click(object sender, RoutedEventArgs e)
+        {
+            leftlabel.Content = s2.Name;
+            gradeLeft.Content = s2.Grade;
+
         }
     }
 }
