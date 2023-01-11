@@ -1,22 +1,27 @@
 ﻿
+using System.Runtime.Remoting.Messaging;
+
 namespace DSAApp
 {
     public class D_LinkedList
     {
         Node head; //the first node of the list
-        Node current; //The pointer to the current node. Used for traversal
+        Node next; //The pointer to the current node. Used for traversal
+        Node prev; //Pointer to the prev node
         int size;
 
         public D_LinkedList()
         {
             head = null;
-            current = head;
+            next = head;
+            prev = head;
             size = 0;
         }
 
         public int Size
         {
             get { return size; }
+            set { size = value; }
         }
 
         public Node Head
@@ -25,10 +30,16 @@ namespace DSAApp
             set { head = value; }
         }
 
-        public Node Current
+        public Node Next
         {
-            get { return current; }
-            set { current = value; }
+            get { return next; }
+            set { next = value; }
+        }
+
+         public Node Prev
+        {
+            get { return prev; }
+            set { prev = value; }
         }
 
         public static void InsertNode(D_LinkedList list, Student data)
@@ -49,37 +60,54 @@ namespace DSAApp
 
             }
 
+            //After every addition increment
+            list.Size = list.Size + 1;
+
 
         }
 
         public static Node TraverseRight(D_LinkedList list)
         {
-            if(list.Current == null)//First traversal. Set current to head then return it
+
+            if(list.prev == list.next  && list.head != null)//Start of traversal
             {
-                list.Current = list.Head;
-                return list.Current;
-            }else if(list.Current != null)//Move next
-            {
-                list.Current = list.Current.Next;
-                return list.Current;
+                list.next = list.head.Next;
+                list.prev = list.head;
 
             }
+            else
+            {
+                if(list.next.Next != null)
+                {
+                    list.prev = list.next;
+                    list.next = list.next.Next;
 
-            //Always return null as default
-            return null;
+                }
+                    
+            }
+
+            return list.next;
         }
 
         public static Node TraverseLeft(D_LinkedList list)
         {
-            //Check if current is not null and also not head
-            if(list.Current != null && list.Current != list.Head)
+            //First initilization
+            if(list.next == list.prev && list.head != null)
             {
-                list.Current = list.Current.Prev;
-                return list.Current;
+                list.next = list.head;
+                //list.prev = list.head;
+            }else
+            {  
+                if(list.next != list.head && list.next != null)
+                {
+                    list.next = list.prev;
+                    list.prev = list.next.Prev;
+                }
+               
+                
             }
 
-            //Always return null as default
-            return null;
+            return list.prev;
         }
 
         public static Node GetLast(D_LinkedList list)
@@ -111,6 +139,8 @@ namespace DSAApp
             //Set the head of the list point to this newly created node
             list.Head = _Node;
 
+             //After every addition increment
+            list.Size = list.Size + 1;
 
         }
 
