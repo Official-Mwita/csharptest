@@ -1,20 +1,17 @@
 ﻿
-using System.Runtime.Remoting.Messaging;
 
 namespace DSAApp
 {
     public class D_LinkedList
     {
         Node head; //the first node of the list
-        Node next; //The pointer to the current node. Used for traversal
-        Node prev; //Pointer to the prev node
-        int size;
+        Node current; //The pointer to the current node. Used for traversal
+        int size; //keeps track of the current list size
 
         public D_LinkedList()
         {
             head = null;
-            next = head;
-            prev = head;
+            current = head;
             size = 0;
         }
 
@@ -30,16 +27,10 @@ namespace DSAApp
             set { head = value; }
         }
 
-        public Node Next
+        public Node Current
         {
-            get { return next; }
-            set { next = value; }
-        }
-
-         public Node Prev
-        {
-            get { return prev; }
-            set { prev = value; }
+            get { return current; }
+            set { current = value; }
         }
 
         public static void InsertNode(D_LinkedList list, Student data)
@@ -48,7 +39,7 @@ namespace DSAApp
             Node _Node = new Node(data);
 
             //Check if head is set. Otherwise set this to head
-            if(list.Head == null)
+            if (list.Head == null)
             {
                 list.Head = _Node;
             }
@@ -66,48 +57,43 @@ namespace DSAApp
 
         }
 
+        /**
+            Returns a pointer to the current node in the list in Right traversal
+         */
         public static Node TraverseRight(D_LinkedList list)
         {
 
-            if(list.prev == list.next  && list.head != null)//Start of traversal
+            if (list.current == null
+                && list.size > 0)//Start of traversal
             {
-                list.next = list.head.Next;
-                list.prev = list.head;
-
+                list.current = list.head;
             }
-            else
+            else if (list.current.Next != null)//Only when we can traverse the list
             {
-                if(list.next.Next != null)
-                {
-                    list.prev = list.next;
-                    list.next = list.next.Next;
-
-                }
-                    
+                list.current = list.current.Next;
             }
 
-            return list.next;
+
+            return list.current;
         }
 
+        /**
+            Returns a pointer to the current list in Left traversal
+         */
         public static Node TraverseLeft(D_LinkedList list)
         {
-            //First initilization
-            if(list.next == list.prev && list.head != null)
+            if (list.Current == null
+               && list.Size > 0)//Start of traversal
             {
-                list.next = list.head;
-                //list.prev = list.head;
-            }else
-            {  
-                if(list.next != list.head && list.next != null)
-                {
-                    list.next = list.prev;
-                    list.prev = list.next.Prev;
-                }
-               
-                
+                list.Current = list.Head;
+            }
+            else if (list.Current != list.Head && list.Size > 1)//Only when we can traverse the list
+            {                                                   //Since it is not the head, and the list has previous
+                list.Current = list.Current.Prev;
             }
 
-            return list.prev;
+
+            return list.Current;
         }
 
         public static Node GetLast(D_LinkedList list)
@@ -139,13 +125,14 @@ namespace DSAApp
             //Set the head of the list point to this newly created node
             list.Head = _Node;
 
-             //After every addition increment
+            //After every addition increment
             list.Size = list.Size + 1;
 
         }
 
 
     }
+
 
     public class Node
     {
